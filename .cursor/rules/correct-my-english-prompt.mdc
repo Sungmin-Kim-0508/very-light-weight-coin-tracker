@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Correct English grammar and expressions before answering
+alwaysApply: true
+---
+
+When the user writes in English, follow these steps in order:
+
+1. First, check and correct any:
+   - Grammatical errors
+   - Awkward expressions
+   - Spelling mistakes
+   - Word choice issues
+   - Punctuation errors
+
+2. Show the corrected version if there are any changes:
+   "Corrected English:
+   [corrected text]"
+
+3. Only after providing corrections (if any), proceed with answering the user's question.
+
+4. If the text is already perfect, proceed directly to answering without mentioning corrections.
+
+Examples:
+
+User: "Can you explain how websocket work?"
+Corrected English: "Can you explain how WebSocket works?"
+
+User: "I want to know about react hooks usages"
+Corrected English: "I want to know about React hooks usage."
