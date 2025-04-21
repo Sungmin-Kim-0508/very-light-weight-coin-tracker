@@ -75,6 +75,75 @@
   - entities -> features -> widgets [❌]
 - 같은 레이어 내에서는 의존성 없음
 
+## 테스트 전략
+
+### 컴포넌트 테스트 (Storybook)
+- **도구**: Storybook
+- **목적**: UI 컴포넌트의 격리된 테스트와 문서화
+- **범위**: 
+  - shared/ui의 모든 컴포넌트
+  - entities의 UI 컴포넌트
+  - features의 UI 컴포넌트
+  - widgets의 UI 컴포넌트
+
+#### Storybook 구조
+```
+.storybook/
+├── main.ts
+└── preview.ts
+
+src/
+└── stories/
+    ├── shared/
+    │   └── Button.stories.tsx
+    ├── entities/
+    │   └── CurrencyCard.stories.tsx
+    ├── features/
+    │   └── PriceAlert.stories.tsx
+    └── widgets/
+        └── TradingChart.stories.tsx
+```
+
+### 통합 테스트 (React Testing Library)
+- **도구**: React Testing Library + Vitest + vitest-dom
+- **목적**: 실제 사용자 관점에서의 기능 테스트
+- **범위**:
+  - 사용자 시나리오 기반 테스트
+  - API 통합 테스트
+  - 상태 관리 테스트
+  - 라우팅 테스트
+
+#### 테스트 구조
+```
+src/
+└── __tests__/
+    ├── integration/
+    │   ├── trading/
+    │   │   ├── order-creation.test.tsx
+    │   │   └── price-alert.test.tsx
+    │   └── market-data/
+    │       └── websocket.test.tsx
+    └── setup/
+        ├── test-utils.tsx
+        └── mocks/
+```
+
+#### 테스트 원칙
+1. **사용자 중심 테스트**
+   - 실제 사용자 행동 시뮬레이션
+   - DOM 쿼리 우선 사용
+   - 접근성 고려
+
+2. **통합 테스트 우선**
+   - 단위 테스트보다 통합 테스트 중점
+   - 실제 사용 시나리오 기반
+   - API 모킹 최소화
+
+3. **테스트 격리**
+   - 각 테스트는 독립적
+   - 테스트 간 상태 공유 없음
+   - 자동 정리(cleanup) 구현
+
 ## 개발 환경
 - Cursor IDE
 - Code Rabbit (AI 코드 리뷰)
@@ -87,6 +156,12 @@ pnpm install
 
 # 개발 서버 실행
 pnpm dev
+
+# Storybook 실행
+pnpm storybook
+
+# 테스트 실행
+pnpm test
 ```
 
 ## 라이선스
